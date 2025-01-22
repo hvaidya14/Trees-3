@@ -49,3 +49,53 @@ class Solution {
         sublist.remove(sublist.size()-1);
     }
 }
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    boolean isSymmetric = true;
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) {
+            return false;
+        }
+
+        checkSymmetry(root.left , root.right);
+        return isSymmetric;
+    }
+
+    private void checkSymmetry(TreeNode leftTree, TreeNode rightTree) {
+        if (leftTree == null && rightTree == null) {
+            return;
+        }
+        if (leftTree == null || rightTree == null ) {
+            isSymmetric= false;
+            return;
+        }
+
+        if(leftTree.val != rightTree.val) {
+            isSymmetric = false;
+            return;
+        }
+
+        if (isSymmetric != false) {
+            checkSymmetry(leftTree.left, rightTree.right);
+            checkSymmetry(leftTree.right, rightTree.left);
+        }
+
+
+    }
+}
